@@ -13,6 +13,7 @@ api.get("/character", function(request, response) {
 // api.get("/author", function(request, response) {
 //     response.send("Brent Weeks")
 // })
+console.log(rollbar.options.host)
 api.get("/author", function() {
     try {
         respond()
