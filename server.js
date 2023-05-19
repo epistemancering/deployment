@@ -5,10 +5,22 @@ let rollbar = new Rollbar({
     "captureUnhandledRejections": true
 })
 let express = require("express")
+let sequelize = require("sequelize")
+let secrets = require("./secrets")
 let api = express()
+let database = new sequelize(secrets.key, {
+    "dialect": "postgres",
+    "dialectOptions": {
+        "ssl": {
+            "rejectUnauthorized": false
+        }
+    }
+})
 api.use(express.static(__dirname + "/public"))
 api.get("/character", function(request, response) {
-    response.send("Gavin Guile")
+    database.query("select * from characters").then(function(selection) {
+        response.send(selection[0][0].name)
+    })
 })
 // api.get("/author", function(request, response) {
 //     response.send("Brent Weeks")
@@ -24,5 +36,5 @@ api.get("/author", function() {
     }
 })
 api.listen(3000, function() {
-    console.log("using port 3000")
+    console.log("on port 3000")
 })

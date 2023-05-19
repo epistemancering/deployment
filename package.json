@@ -12,6 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "rollbar": "^2.26.1"
+    "pg": "^8.11.0",
+    "pg-hstore": "^2.3.4",
+    "rollbar": "^2.26.1",
+    "sequelize": "^6.31.1"
   }
 }
