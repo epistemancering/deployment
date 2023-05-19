@@ -19,6 +19,8 @@ api.get("/author", function() {
         respond()
     } catch (error) {
         rollbar.log(error)
+        rollbar.critical(error)
+        rollbar.warning(error)
     }
 })
 api.listen(3000, function() {
